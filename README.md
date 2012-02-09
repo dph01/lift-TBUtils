@@ -6,9 +6,9 @@ To use the utility in your own project:
 
 1. download and build the TBUtils library:
 
-`git clone https://github.com/dph01/lift-TBUtils
-cd liftTBUtils
-./sbt publish-local`
+    git clone https://github.com/dph01/lift-TBUtils
+    cd liftTBUtils
+    ./sbt publish-local`
 
 2. In the project in which you want to use the library, add the following to the dependencies in the project's build.sbt:
 
