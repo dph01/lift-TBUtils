@@ -12,7 +12,7 @@ To use the utility in your own project:
 
 2. In the project in which you want to use the library, add the following to the dependencies in the project's build.sbt:
 
-    "com.damianhelme" %% "tbutils" % "0.1.0" % "compile"
+        "com.damianhelme" %% "tbutils" % "0.1.0" % "compile"
 
 3. In Boot.scala, define your menu sitemap with something like:
 
