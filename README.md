@@ -30,25 +30,26 @@ To use the utility in your own project:
 Every menu entry with a submenu will the rendered as a menu drop-down. The 'PlaceHolder' is optional, but it's clearer to
 other developers that you intend this entry to be the root of a drop-down if you include it.
 
-4) Download the Twitter Bootstrap libraries from http://twitter.github.com/bootstrap/assets/bootstrap.zip and copy into 
+4. Download the Twitter Bootstrap libraries from http://twitter.github.com/bootstrap/assets/bootstrap.zip and copy into 
 a subdirectory of /src/main/webapp (e.g. /src/main/webapp/bootstrap/1.4.0)
 
-5) Link to the Bootstrap files in your html:
-<link rel="stylesheet" type="text/css" href="/bootstrap/1.4.0/bootstrap.css">
-<script id="bootstrap-dropdown" src="/bootstrap/1.4.0/js/bootstrap-dropdown.js" type="text/javascript"></script>
+5. Link to the Bootstrap files in your html:
 
+        <link rel="stylesheet" type="text/css" href="/bootstrap/1.4.0/bootstrap.css">
+        <script id="bootstrap-dropdown" src="/bootstrap/1.4.0/js/bootstrap-dropdown.js" type="text/javascript"></script>
 
-4) In your html, wrap your call to Menu.builder with: 
-  <div class="topbar">
-    <div class="fill">
-      <div class="container">
-        <a class="brand" href="/">My App</a> 
-        <span class="lift:TBNav.menuToTBNav?eager_eval=true"> 
-          <span data-lift="lift:Menu.builder?top:class=nav;li_item:class=active;linkToSelf=true;expandAll=true"></span>
-        </span>
-      </div>
-    </div>
-  </div>
+4. In your html, wrap your call to Menu.builder with: 
+
+        <div class="topbar">
+          <div class="fill">
+            <div class="container">
+              <a class="brand" href="/">My App</a> 
+              <span class="lift:TBNav.menuToTBNav?eager_eval=true"> 
+                <span data-lift="lift:Menu.builder?top:class=nav;li_item:class=active;linkToSelf=true;expandAll=true"></span>
+              </span>
+            </div>
+          </div>
+        </div>
 
 
 
