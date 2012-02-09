@@ -4,7 +4,7 @@ You can see a running example of the code here <TBC>
 
 To use the utility in your own project:
 
-1. download and build the library:
+1. download and build the TBUtils library:
 
 git clone ....
 
@@ -28,14 +28,14 @@ git clone ....
     LiftRules.setSiteMap(sitemap)
 
 Every menu entry with a submenu will the rendered as a menu drop-down. The 'PlaceHolder' is optional, but it's clearer to
-other developers to include it.
+other developers that you intend this entry to be the root of a drop-down if you include it.
 
 4) Download the Twitter Bootstrap libraries from http://twitter.github.com/bootstrap/assets/bootstrap.zip and copy into 
-a subdirectory of /src/main/webapp (e.g. /src/main/webapp/bootstrap/2.0.0)
+a subdirectory of /src/main/webapp (e.g. /src/main/webapp/bootstrap/1.4.0)
 
 5) Link to the Bootstrap files in your html:
-<link rel="stylesheet" type="text/css" href="/bootstrap/2.0.0/bootstrap.css">
-<script id="bootstrap-dropdown" src="/bootstrap/2.0.0/js/bootstrap-dropdown.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/bootstrap/1.4.0/bootstrap.css">
+<script id="bootstrap-dropdown" src="/bootstrap/1.4.0/js/bootstrap-dropdown.js" type="text/javascript"></script>
 
 
 4) In your html, wrap your call to Menu.builder with: 
