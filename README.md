@@ -28,18 +28,18 @@ To use the utility in your own project:
         def sitemap = SiteMap(entries: _*)
         LiftRules.setSiteMap(sitemap)
 
-Every menu entry with a submenu will the rendered as a menu drop-down. The 'PlaceHolder' is optional, but it's clearer to
-other developers that you intend this entry to be the root of a drop-down if you include it.
+  Every menu entry with a submenu will the rendered as a menu drop-down. The 'PlaceHolder' is optional, but it's clearer to
+  other developers that you intend this entry to be the root of a drop-down if you include it.
 
 4. Download the Twitter Bootstrap libraries from http://twitter.github.com/bootstrap/assets/bootstrap.zip and copy into 
 a subdirectory of /src/main/webapp (e.g. /src/main/webapp/bootstrap/2.0.0)
 
-5. Link to the Bootstrap files in your html:
+5. Include the Bootstrap files in your html:
 
         <link rel="stylesheet" type="text/css" href="/bootstrap/1.4.0/bootstrap.css">
         <script id="bootstrap-dropdown" src="/bootstrap/1.4.0/js/bootstrap-dropdown.js" type="text/javascript"></script>
         
-5. Link to jquery in your html (note that Bootstrap 2.0 requires jquery 1.7.0 or later)
+5. Include jquery in your html (note that Bootstrap 2.0 requires jquery 1.7.0 or later) with something like:
 
         <script id="jquery" src="/scripts/jquery-1.7.1.js" type="text/javascript"></script>
 
