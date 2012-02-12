@@ -6,21 +6,21 @@ import org.scalatest.FunSuite
 import org.scalatest.FeatureSpec
 import net.liftweb.common.Logger
 
-class TBUtilsTest extends FunSuite with Logger {
+class appendToClassTest extends FunSuite with Logger {
   
-  test("appendToClass: set class where one previously existed") {
+  test("set class where one previously existed") {
     val att = new UnprefixedAttribute("class",Text("old"),Null)
     expect("old foo") {
       TBNav.appendToClass(att, "foo").get("class").map(_.mkString).get
     }
   }
-  test("appendToClass: set class where no class previously existed") {
+  test("set class where no class previously existed") {
     val x @ Elem(_,_,a,_,_*)= <li>blah</li>
     expect("foo") {
       TBNav.appendToClass(a, "foo").get("class").map(_.mkString).get
     }
   }
-  test("appendToClass: set class where class previously existed but had blank value") {
+  test("set class where class previously existed but had blank value") {
     val x @ Elem(_,_,a,_,_*)= <li class="">blah</li>
     expect("foo") {
       val ret = TBNav.appendToClass(a, "foo").get("class").map(_.mkString).get
@@ -29,24 +29,23 @@ class TBUtilsTest extends FunSuite with Logger {
     
   }
   
-  test("appendToClass: set class where other attributes set") {
+  test("set class where other attributes set") {
     val a = new UnprefixedAttribute("class",Text("aclass"),Null)
     val b = new UnprefixedAttribute("href",Text("bhref"),a)
     expect("aclass foo") {
-      debug("start: b = " + b)
       val ret = TBNav.appendToClass(a, "foo").get("class").map(_.mkString).get
-      debug("end")
       ret
     }
   }
- 
+} 
   
+class menuToNavTest extends FunSuite with Logger {
   test("regular case generated using PlaceHolder"){
     /* aiming for: 
    val target = <ul>
-          <li class="dropdown" data-dropdown="dropdown">
-            <a class="dropdown-toggle">Dropdown</a>
-            <ul class="dropdown-menu">
+         <li class="dropdown" >
+           <a class="dropdown-toggle" data-toggle="dropdown" >Dropdown<b class="caret"></b></a>
+           <ul class="dropdown-menu">
               <li><a href="#">Secondary link</a></li>
               <li><a href="#">Something else here</a></li>
               <li class="divider"></li>
@@ -55,8 +54,21 @@ class TBUtilsTest extends FunSuite with Logger {
             <li>some other</li>
           </li>
         </ul>
+        
      * */
-    val target : NodeSeq = stripWhiteSpace(<ul><li class="dropdown" data-dropdown="dropdown"><a class="dropdown-toggle">Dropdown</a><ul class="dropdown-menu"><li><a href="#">Secondary link</a></li><li><a href="#">Something else here</a></li><li><a href="#">Another link</a></li></ul></li><li>some other</li></ul>)
+   val target = 
+       <ul>
+         <li class="dropdown" >
+           <a class="dropdown-toggle" data-toggle="dropdown" >Dropdown<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+              <li><a href="#">Secondary link</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li><a href="#">Another link</a></li>
+           </ul>
+         </li>
+         <li>some other</li>
+       </ul>
+//      val target : NodeSeq = stripWhiteSpace(<ul><li class="dropdown" data-dropdown="dropdown"><a class="dropdown-toggle">Dropdown</a><ul class="dropdown-menu"><li><a href="#">Secondary link</a></li><li><a href="#">Something else here</a></li><li><a href="#">Another link</a></li></ul></li><li>some other</li></ul>)
     val targetText = new PrettyPrinter(80,3).formatNodes(target)
     val in = <ul>
           <li>
@@ -73,27 +85,28 @@ class TBUtilsTest extends FunSuite with Logger {
     val result : NodeSeq = (TBNav.menuToTBNav)(in)
     val resultText : String = new PrettyPrinter(80,3).formatNodes(result)
     
+    // note that we're comparing text representations to avoid mismatches due to whitespace between elements
     expect(targetText) {
       resultText
    }
   }
   
   test("regular case using generated without PlaceHolder"){
-    /* aiming for: 
-   val target = <ul>
-          <li class="dropdown" data-dropdown="dropdown">
-            <a href="#" class="dropdown-toggle">Dropdown</a>
-            <ul class="dropdown-menu">
+    // aiming for: 
+   val target = 
+       <ul>
+         <li class="dropdown" >
+           <a class="dropdown-toggle" data-toggle="dropdown" href="/dropdown">Dropdown<b class="caret"></b></a>
+           <ul class="dropdown-menu">
               <li><a href="#">Secondary link</a></li>
               <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
               <li><a href="#">Another link</a></li>
-            </ul>
-            <li>some other</li>
-          </li>
-        </ul>
-     * */
-    val target : NodeSeq = stripWhiteSpace(<ul><li class="dropdown" data-dropdown="dropdown"><a href="/dropdown" class="dropdown-toggle">Dropdown</a><ul class="dropdown-menu"><li><a href="#">Secondary link</a></li><li><a href="#">Something else here</a></li><li><a href="#">Another link</a></li></ul></li><li>some other</li></ul>)
+           </ul>
+         </li>
+         <li>some other</li>
+       </ul>    
+    val targetText = new PrettyPrinter(80,3).formatNodes(target)
+       
     val in = <ul>
           <li>
             <a href="/dropdown" >Dropdown</a>
@@ -106,12 +119,12 @@ class TBUtilsTest extends FunSuite with Logger {
           <li>some other</li>
         </ul>
   
-    val target2 = <ul></ul>
-    val in2 : NodeSeq = <ul></ul>
-      
     val result : NodeSeq = (TBNav.menuToTBNav)(in)
-    expect(target) {
-      result
+    val resultText : String = new PrettyPrinter(80,3).formatNodes(result)
+ 
+    // note that we're comparing text representations to avoid mismatches due to whitespace between elements
+    expect(targetText) {
+      resultText
     }
   }
     

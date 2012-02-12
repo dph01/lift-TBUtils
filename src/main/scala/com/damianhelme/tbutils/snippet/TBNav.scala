@@ -43,8 +43,8 @@ object TBNav extends Logger {
            </ul>
           </li>
       and transforms it to:
-        <li class="dropdown" data-dropdown="dropdown">
-           <a class="dropdown-toggle">Test</a>
+        <li class="dropdown" >
+           <a class="dropdown-toggle" data-toggle="dropdown" >Test<b class="caret"></b></a>
            <ul class="dropdown-menu">
               <li>
                  <a href="/test2">Test 2</a>
@@ -60,16 +60,11 @@ object TBNav extends Logger {
           span @ Elem(spanPrefix,"span",spanAttribs,spanScope,spanChildren @ _*), 
           ul @ Elem(ulPrefix,"ul",ulAttribs,ulScope,ulChildren @ _*), 
           other @ _* )  => {
-
-            // add the Bootstrap classes to existing attributes
-            val newLiAttribs = appendToClass(liAttribs,"dropdown").append("data-dropdown" -> "dropdown")
-            val newAAttribs = appendToClass(spanAttribs,"dropdown-toggle")
-            val newUlAttribs = appendToClass(ulAttribs,"dropdown-menu")
-
+            
             // create a new node seq with modified attributes
-            Elem(liPrefix,"li",newLiAttribs,liScope, 
-              Elem(spanPrefix, "a", newAAttribs, spanScope, spanChildren: _*) ++
-              Elem(ulPrefix, "ul", newUlAttribs, ulScope, ulChildren: _*) ++
+            Elem(liPrefix,"li",newLiAttribs(liAttribs),liScope, 
+              Elem(spanPrefix, "a", newAAttribs(spanAttribs), spanScope, newAChildren(spanChildren): _*) ++
+              Elem(ulPrefix, "ul", newUlAttribs(ulAttribs), ulScope, ulChildren: _*) ++
               other: _*)
           }
        
@@ -85,9 +80,11 @@ object TBNav extends Logger {
             </li>
            </ul>
           </li>
+          
       and transforms it to:
-        <li class="dropdown" data-dropdown="dropdown">
-           <a href="/test" class="dropdown-toggle">Test</a>
+      
+        <li class="dropdown" >
+           <a class="dropdown-toggle" data-toggle="dropdown" >Test<b class="caret"></b></a>
            <ul class="dropdown-menu">
               <li>
                  <a href="/test2">Test 2</a>
@@ -103,15 +100,11 @@ object TBNav extends Logger {
           a @ Elem(aPrefix,"a",aAttribs,aScope,aChildren @ _*), 
           ul @ Elem(ulPrefix,"ul",ulAttribs,ulScope,ulChildren @ _*), 
           other @ _* )  => {
-            // add the Bootstrap classes to existing attributes
-            val newLiAttribs = appendToClass(liAttribs,"dropdown").append("data-dropdown" -> "dropdown")
-            val newAAttribs = appendToClass(aAttribs,"dropdown-toggle")
-            val newUlAttribs = appendToClass(ulAttribs,"dropdown-menu")
-
+ 
             // create a new node seq with modified attributes
-            Elem(liPrefix,"li",newLiAttribs,liScope, 
-              Elem(aPrefix, "a", newAAttribs, aScope, aChildren: _*) ++
-              Elem(ulPrefix, "ul", newUlAttribs, ulScope, ulChildren: _*) ++
+            Elem(liPrefix,"li",newLiAttribs(liAttribs),liScope, 
+              Elem(aPrefix, "a", newAAttribs(aAttribs), aScope, newAChildren(aChildren): _*) ++
+              Elem(ulPrefix, "ul", newUlAttribs(ulAttribs), ulScope, ulChildren: _*) ++
               other: _*)
           }
       case other @ _ => other
@@ -124,7 +117,9 @@ object TBNav extends Logger {
     // debug("menuToTBNav out: " + new PrettyPrinter(80,3).formatNodes(out))
     out
   }
+  
   /*
+   * an attempt at using CSS selectors rather than XML Transform - TBC
   def menuToTBNav(in: NodeSeq) : NodeSeq = {
      def testNode(ns: NodeSeq, cssSel: String): Boolean = {
     var ret = false // does the NodeSeq have any nodes that match the CSS Selector
@@ -142,6 +137,15 @@ object TBNav extends Logger {
   }
   */
   
+  // utility methods to add the Bootstrap classes to existing attributes
+  def newLiAttribs(oldAttribs: MetaData) =  appendToClass(oldAttribs,"dropdown")
+  def newAAttribs(oldAttribs: MetaData) = appendToClass(oldAttribs,"dropdown-toggle")
+                                              .append("data-toggle" -> "dropdown")
+  def newUlAttribs(oldAttribs: MetaData) = appendToClass(oldAttribs,"dropdown-menu")
+  def newAChildren(oldChildren: NodeSeq) = oldChildren ++ <b class="caret"></b>
+            
+  
+
   // append a new value to the class attribute if one already exists, otherwise create a new class 
   // with the given value
   def appendToClass(attribs: MetaData, newClass: String ) : MetaData = {
