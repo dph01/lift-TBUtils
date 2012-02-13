@@ -15,4 +15,4 @@ libraryDependencies <+= sbtVersion(v => "com.github.siasia" %% "xsbt-web-plugin"
 
 // scct
 // libraryDependencies += "ch.craven" %% "scct-plugin" % "0.2.1"
-addSbtPlugin("ch.craven" %% "scct-plugin" % "0.2.1")
+// addSbtPlugin("ch.craven" %% "scct-plugin" % "0.2.1")
