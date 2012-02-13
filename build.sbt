@@ -35,7 +35,7 @@ libraryDependencies ++= {
 	
 	resolvers += "Java.net Maven2 Repo" at "http://download.java.net/maven/2/"
 		
-		seq(ScctPlugin.scctSettings: _*)
+		// seq(ScctPlugin.scctSettings: _*)
 		
 		// needed to stop a clash between slf4j-log4j12 and logback-classic
 	// ivyXML := <dependencies> 
