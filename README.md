@@ -28,8 +28,8 @@ To use the utility in your own project:
         def sitemap = SiteMap(entries: _*)
         LiftRules.setSiteMap(sitemap)
 
-  Every menu entry with a submenu will the rendered as a menu drop-down. The 'PlaceHolder' is optional, but it's clearer to
-  other developers that you intend this entry to be the root of a drop-down if you include it.
+    Every menu entry with a submenu will the rendered as a menu drop-down. The 'PlaceHolder' is optional, but it's clearer to
+    other developers that you intend this entry to be the root of a drop-down if you include it.
 
 4. Download the Twitter Bootstrap libraries from http://twitter.github.com/bootstrap/assets/bootstrap.zip and copy into 
 a subdirectory of /src/main/webapp (e.g. /src/main/webapp/bootstrap/2.0.0)
@@ -39,11 +39,12 @@ a subdirectory of /src/main/webapp (e.g. /src/main/webapp/bootstrap/2.0.0)
         <link rel="stylesheet" type="text/css" href="/bootstrap/1.4.0/bootstrap.css">
         <script id="bootstrap-dropdown" src="/bootstrap/1.4.0/js/bootstrap-dropdown.js" type="text/javascript"></script>
         
-5. Include jquery in your html (note that Bootstrap 2.0 requires jquery 1.7.0 or later) with something like:
+5. Make sure jquery 1.7.0 or later is included in your html. An easy way to do this would be to copy the jquery file into 
+a subdirectory of /sr/main/webpp (e.g. /src/main/webmapp/jquery) and include a line such as the following in your html:
 
-        <script id="jquery" src="/scripts/jquery-1.7.1.js" type="text/javascript"></script>
+        <script id="jquery" src="/jquery/jquery-1.7.1.js" type="text/javascript"></script>
 
-4. In your html, wrap your call to Menu.builder with: 
+4. In your html, wrap your call to Menu.builder with call to TBNav.menuToTBNav: 
 
         <div class="topbar">
          <div class="navbar-inner">
@@ -56,7 +57,7 @@ a subdirectory of /src/main/webapp (e.g. /src/main/webapp/bootstrap/2.0.0)
             </div>
           </div>
         </div>
-
+    The classes topbar, navbar-inner, fill and container are Bootstrap class for formatting the navigation bar.
 
 
 
