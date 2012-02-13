@@ -1,7 +1,8 @@
 This is a utility to create Twitter Bootstrap styled nav bar with drop down menus from the output of Lift's Menu.builder. 
 Any menu item that is defined with submenus will automatically rendered as a drop-down menu.
 
-You can see a running example of the code here <TBC>
+You download an example of this library used in an application [here](https://github.com/dph01/lift-TBNavbarTemplate]) and see
+ a running example [http://www.damianhelme.com/tbnav](http://www.damianhelme.com/tbnav).
 
 To use the utility in your own project:
 
@@ -57,7 +58,7 @@ a subdirectory of /sr/main/webpp (e.g. /src/main/webmapp/jquery) and include a l
             </div>
           </div>
         </div>
-    The classes topbar, navbar-inner, fill and container are Bootstrap class for formatting the navigation bar.
+    The classes: topbar, navbar-inner, fill and container etc. are Bootstrap class for formatting the navigation bar.
 
 
 
