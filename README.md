@@ -60,5 +60,6 @@ a subdirectory of /sr/main/webpp (e.g. /src/main/webmapp/jquery) and include a l
         </div>
     The classes: topbar, navbar-inner, fill and container etc. are Bootstrap class for formatting the navigation bar.
 
+For comments, questions, etc. please see the accompanying [blogpost](http://tech.damianhelme.com/twitter-bootstrap-navbar-dropdowns-and-lifts)
 
 
