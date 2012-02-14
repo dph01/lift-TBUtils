@@ -16,7 +16,11 @@ To use the utility in your own project:
 
         "com.damianhelme" %% "tbutils" % "0.1.0" % "compile"
 
-3. In Boot.scala, define your menu sitemap with something like:
+3. In order to tell Lift where to look for the TBNav snippet, in Boot.scala add:
+
+        LiftRules.addToPackages("com.damianhelme.tbutils")
+
+4. In Boot.scala, define your menu sitemap with something like:
 
         val entries = List(Menu("Home") / "index",
           Menu("Page 1") / "page1",
