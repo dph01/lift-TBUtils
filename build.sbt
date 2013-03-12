@@ -3,30 +3,18 @@ name := "tbutils"
 
 version := "0.1.0"
 
-scalaVersion := "2.9.1"
+scalaVersion := "2.10.0"
  
 organization := "com.damianhelme"
 
 // add a test dependency on ScalaCheck
-// libraryDependencies += "org.scala-tools.testing" %% "scalacheck" % "1.8" % "test"
 libraryDependencies ++= {
-    val liftVersion = "2.4"
+    val liftVersion = "2.5-M4"
   	Seq(
     	"net.liftweb" %% "lift-webkit" % liftVersion % "compile" withSources(),
-    	// "net.liftweb" %% "lift-mapper" % liftVersion % "compile",
-    	// "net.liftweb" %% "lift-record" % liftVersion % "compile",
-    	// "net.liftweb" %% "lift-wizard" % liftVersion % "compile",
-		// "net.liftweb" %% "lift-widgets" % liftVersion % "compile",
 		"ch.qos.logback" % "logback-classic" % "0.9.26" % "compile",
-		// "com.h2database" % "h2" % "1.2.138",
-		// "mysql" % "mysql-connector-java" % "5.1.16",
-		// "javax.servlet" % "servlet-api" % "2.5" % "provided",
-		// "org.mortbay.jetty" % "jetty" % "6.1.26" % "test,container",
-		// "org.mortbay.jetty" % "jetty-plus" % "6.1.26" % "test,container",
-		// "junit" % "junit" % "4.5" % "test",
-		// "org.scala-tools.testing" %% "specs" % "1.6.9" % "test",
-    "org.scalatest" %% "scalatest" % "1.6.1" % "test",
-    "org.scala-lang" % "scala-compiler" % "2.9.1"
+        "org.scalatest" %% "scalatest" % "1.9.1" % "test",
+        "org.scala-lang" % "scala-compiler" % "2.10.0"
   	)
 }
 
