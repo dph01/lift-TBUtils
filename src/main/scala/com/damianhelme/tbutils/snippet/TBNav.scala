@@ -62,9 +62,9 @@ object TBNav extends Logger {
           other @ _* )  => {
             
             // create a new node seq with modified attributes
-            Elem(liPrefix,"li",newLiAttribs(liAttribs),liScope, 
-              Elem(spanPrefix, "a", newAAttribs(spanAttribs), spanScope, newAChildren(spanChildren): _*) ++
-              Elem(ulPrefix, "ul", newUlAttribs(ulAttribs), ulScope, ulChildren: _*) ++
+            Elem(liPrefix,"li",newLiAttribs(liAttribs),liScope, true,
+              Elem(spanPrefix, "a", newAAttribs(spanAttribs), spanScope, true, newAChildren(spanChildren): _*) ++
+              Elem(ulPrefix, "ul", newUlAttribs(ulAttribs), ulScope, true, ulChildren: _*) ++
               other: _*)
           }
        
@@ -102,9 +102,9 @@ object TBNav extends Logger {
           other @ _* )  => {
  
             // create a new node seq with modified attributes
-            Elem(liPrefix,"li",newLiAttribs(liAttribs),liScope, 
-              Elem(aPrefix, "a", newAAttribs(aAttribs), aScope, newAChildren(aChildren): _*) ++
-              Elem(ulPrefix, "ul", newUlAttribs(ulAttribs), ulScope, ulChildren: _*) ++
+            Elem(liPrefix,"li",newLiAttribs(liAttribs),liScope, true, 
+              Elem(aPrefix, "a", newAAttribs(aAttribs), aScope, true, newAChildren(aChildren): _*) ++
+              Elem(ulPrefix, "ul", newUlAttribs(ulAttribs), ulScope, true, ulChildren: _*) ++
               other: _*)
           }
       case other @ _ => other
